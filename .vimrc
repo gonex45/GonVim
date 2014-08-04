@@ -2,6 +2,8 @@
 set mouse=a 	" 開啟滑鼠功能 ssh遠端狀態下就不行了
 set nocompatible " 和vi不同模式
 
+"swap 檔的資料夾  資料夾必需先建起來
+set directory=$HOME/.vim/tmp/
 " ==== 換行 tab 空白 縮排 ====
 "set autoindent	"(ai)自動縮排
 set smartindent "自動縮排
@@ -22,6 +24,10 @@ set background=dark             " 設定背景為暗，有些colorscheme需要
 syntax on                       " 語法上色顯示
 set t_Co=256                    " 支援256色
 set guifont=Source\ Code\ Pro\ for\ Powerline:h16
+
+"开启光亮光标行
+set cursorline
+"hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 
 
 " ==== Search ====
@@ -97,6 +103,13 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'toyamarinyon/vim-swift'
 Plugin 'kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'kshenoy/vim-signature'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-scripts/a.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -122,6 +135,13 @@ filetype plugin indent on    " required
 let g:airline#extensions#tabline#enabled = 1
 set timeoutlen=50
 let g:airline_powerline_fonts = 1
+
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
+let g:airline#extensions#quickfix#location_text = 'Location'
+
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+
 " ========
 
 " ==== NERDTree ====
@@ -132,7 +152,7 @@ autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-map <C-n> :NERDTreeToggle<CR>
+map <F6> :NERDTreeToggle<CR>
 
 " only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -152,3 +172,30 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 " =======
 "
+" ==== CtrlP ====
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+" ========
+" ==== YouCompleteMe ====
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_use_ultisnips_completer = 1
+
+" ========
+" ==== UltiSnips ====
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-y>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" ========
