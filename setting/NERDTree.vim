@@ -1,16 +1,11 @@
 Plugin 'scrooloose/nerdtree'
 " ==== NERDTree ====
 " open a NERDTree automatically when vim starts up
-autocmd vimenter * NERDTree
-" 將 NERDTree 的視窗設置在 vim 視窗的右側（預設為左側）
-let NERDTreeWinPos="right"
-
-" 當打開 NERDTree 視窗時，自動顯示 Bookmarks
-let NERDTreeShowBookmarks=1
+"autocmd vimenter * NERDTree
 
 " NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <F6> :NERDTreeToggle<CR>
 

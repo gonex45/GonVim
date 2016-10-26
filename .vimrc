@@ -1,18 +1,20 @@
-	set mouse=a 	" 開啟滑鼠功能 ssh遠端狀態下就不行了
+	
+	set paste	"不要貼上東西時自動縮排
+	"set mouse=a 	" 開啟滑鼠功能 ssh遠端狀態下就不行了
 	set nocompatible " 和vi不同模式
 
 	"swap 檔的資料夾  資料夾必需先建起來
 	set directory=$HOME/.vim/tmp/
 	" ==== 換行 tab 空白 縮排 ====
 	"set autoindent	"(ai)自動縮排
-	set smartindent "自動縮排
+	" set smartindent "自動縮排
 	"set nowrap      "不要自動折行
 	set softtabstop=4
 	set tabstop=4 	" tab 的字元數
 	set shiftwidth=4
 	" set list" 顯示 空白 換行 tab 字元
 	set backspace=indent,eol,start	" 在編輯模式下也能刪除字元
-	set showmatch	" 设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
+	" set showmatch	" 设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
 
 	" ==== 外觀 ====
 
@@ -22,7 +24,7 @@
 	set background=dark             " 設定背景為暗，有些colorscheme需要
 	syntax on                       " 語法上色顯示
 set t_Co=256                    " 支援256色
-set guifont=Source\ Code\ Pro:h16
+set guifont=Source\ Code\ Pro:h11
 
 "开启光亮光标行
 set cursorline
@@ -85,6 +87,7 @@ source ~/.vim/setting/AirLine.vim
 
 " NERDTree
 source ~/.vim/setting/NERDTree.vim
+source ~/.vim/setting/CtrlP.vim
 
 " node.js
 source ~/.vim/setting/NodeJs.vim
